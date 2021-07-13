@@ -6,13 +6,13 @@ class TodoDatabase:
 
         self.conncet = sqlite3.connect("db.sqlite", check_same_thread = False)
         self.cursor = self.conncet.cursor()
-        self.cursor.execute("create table if not exists todos(id text primary key, content text, date text)")
+        self.cursor.execute("create table if not exists todos(id text primary key, title text, content text, date text)")
         self.cursor.execute("create table if not exists relations(todoId text, nextTodoId text)")
 
     def upsert(self, todo):
 
         try:
-            self.cursor.execute("insert into todos values (?, ?, ?) on conflict(id) do update set id = ? and content = ? and date = ?", (todo.id, todo.content, todo.date, todo.id, todo.content, todo.date))
+            self.cursor.execute("insert into todos values (?, ?, ?, ?) on conflict(id) do update set id = ? and title = ? and content = ? and date = ?", (todo.id, todo.title, todo.content, todo.date, todo.id, todo.title, todo.content, todo.date))
             self.conncet.commit()
             return todo
         except Exception as e:

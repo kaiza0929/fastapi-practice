@@ -19,12 +19,17 @@ todoDatabase = TodoDatabase()
 
 class Todo(BaseModel):
     id: str
+    title: str
     content: str
     date: str
 
 @app.get("/api/todo")
 def getTodos():
-    return {"todos": todoDatabase.read()}
+    todos = []
+    for todo in todoDatabase.read():
+        todos.append({"id": todo[0], "title": todo[1], "content": todo[2], "date": todo[3]})
+    print(todos)
+    return {"todos": todos}
 
 @app.post("/api/todo")
 def upsertTdo(todo: Todo):

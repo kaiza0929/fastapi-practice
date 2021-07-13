@@ -1,7 +1,8 @@
 export type Todo = {
-    id: String;
+    id: string;
+    title: string;
     content: string;
-    date: Date
+    date: Date;
 }
 
 export type TodoState = {

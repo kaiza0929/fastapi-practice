@@ -4,7 +4,7 @@ import { makeStyles, List, ListItem, ListItemText } from "@material-ui/core";
 const useStyles = makeStyles({
     list: {
         flexDirection: "column",
-        width: "30%"
+        width: "10%"
     }
 });
 

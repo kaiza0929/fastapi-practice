@@ -19,7 +19,11 @@ export const getTodos = async (keyword: string | null = null): Promise<Todo[]> =
         res = await base.get(`/todo?keyword=${keyword}`);
     }
 
-    console.log(res.data)
-    return res.data.todos;
+    const todos: Todo[] = res.data.todos.map((todo: Todo) => {
+        todo.date = new Date(Number(todo.date));
+        return todo;
+    });
+
+    return todos;
 
 }

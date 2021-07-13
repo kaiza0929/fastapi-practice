@@ -15,16 +15,6 @@ const App: React.FC = () => {
     const dispatch = useDispatch();
 
     /* 最上位コンポーネントは一度しかレンダリングを行わないのでAPIからの取得処理をここに書く */
-    /*
-    useEffect(() => {
-        (async () => {
-            let todos: Todo[] = await getTodos();
-            alert(JSON.stringify(todos));
-            dispatch({type: "INITTODOS", payload: {todos: todos}})
-        })();
-    }, []);
-    */
-
     useEffect(() => {
         getTodos().then((todos: Todo[]) => {
             dispatch({type: "INITTODOS", payload: {todos: todos}});
@@ -35,7 +25,7 @@ const App: React.FC = () => {
         <>
             <Router>
                 <Header />
-                <Box flexDirection="row">
+                <Box display="flex" flexDirection="row">
                     <Sidemenu />
                     <Route exact path="/" component={Home}></Route>
                     <Route exact path="/form" component={Form}></Route>
