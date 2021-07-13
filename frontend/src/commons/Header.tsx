@@ -6,7 +6,7 @@ const useStyles = makeStyles({
         padding: "1%"
     },
     title: {
-        //flexGrow: 1
+        flexGrow: 1,
         fontWeight: "bold"
     }
 })
